@@ -1,0 +1,24 @@
+.table {
+  width: 600px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 28px;
+}
+
+th {
+  background-color: #ee9b1eda;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 10px 0 10px 0;
+}
+
+td {
+  font-weight: 400;
+  font-size: 14px;
+  padding: 10px 0 10px 0;
+}
+
+tr:nth-child(even) {
+  background-color: rgba(207, 207, 178, 0.385);
+}
