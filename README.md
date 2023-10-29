@@ -20,8 +20,7 @@
 ## 1 - Профіль соціальної мережі
 
 Необхідно створити компонент `<Profile>`, за допомогою якого ми могли б відображати інформацію про
-користувача соціальної мережі. Дані про користувача лежать у файлі
-[user.json](https://github.com/goitacademy/react-homework/blob/master/homework-01/social-profile/user.json).
+користувача соціальної мережі. Дані про користувача лежать у файлі user.json.
 
 #### Опис компонента `<Profile>`
 
@@ -84,8 +83,7 @@ import user from 'path/to/user.json;
 
 Створити компонент `<Statistics>`, який би відображав статистику з переданих пропсів. Наприклад,
 завантаження у хмару за типом файлів, відвідування веб-сторінки користувачами різних країн,
-фінансові витрати тощо. Дані про статистику лежать у файлі
-[data.json](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/goitacademy/react-homework/blob/master/homework-01/statistics/data.json).
+фінансові витрати тощо. Дані про статистику лежать у файлі data.json.
 
 #### Опис компонента `<Statistics>`
 
@@ -139,8 +137,7 @@ import data from '/path/to/data.json';
 ## 3 - Список друзів
 
 Необхідно створити компонент `<FriendList>`, за допомогою якого ми могли б відображати інформацію
-про друзів користувача. Інформація про друзів зберігається у файлі
-[friends.json](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/goitacademy/react-homework/blob/master/homework-01/friend-list/friends.json).
+про друзів користувача. Інформація про друзів зберігається у файлі friends.json.
 
 #### Опис компонента `<FriendList>`
 
@@ -188,9 +185,8 @@ import friends from 'path/to/friends.json';
 
 Необхідно створити компонент історії транзакцій в особистому кабінеті інтернет-банку.
 
-Дані для списку доступні у форматі JSON у файлі
-[transactions.json](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/goitacademy/react-homework/blob/master/homework-01/transaction-history/transactions.json).
-Це масив об'єктів, де кожен об'єкт описує одну транзакцію з наступними властивостями:
+Дані для списку доступні у форматі JSON у файлі transactions.json. Це масив об'єктів, де кожен
+об'єкт описує одну транзакцію з наступними властивостями:
 
 - `id` — унікальний ідентифікатор транзакції
 - `type` — тип транзакції
