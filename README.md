@@ -30,10 +30,6 @@ state = {
 }
 ```
 
-Інтерфейс може мати такий вигляд.
-
-![image](https://github.com/savchyndd/goit-react-hw-02-feedback/assets/96209694/a8dc3c03-dfd9-4ee4-aa19-fef6f12f550c)
-
 #### Крок 2
 
 Розшир функціонал застосунку таким чином, щоб в інтерфейсі відображалося більше статистики про
@@ -41,8 +37,6 @@ state = {
 відсоток позитивних відгуків. Для цього створи допоміжні методи `countTotalFeedback()` і
 `countPositiveFeedbackPercentage()`, які підраховують ці значення, ґрунтуючись на даних у стані
 (обчислювані дані).
-
-![image](https://github.com/savchyndd/goit-react-hw-02-feedback/assets/96209694/e5ff6c3f-1330-494c-a3da-0ed44bccf256)
 
 #### Крок 3
 
@@ -59,5 +53,3 @@ state = {
 Розшир функціонал застосунку таким чином, щоб блок статистики рендерився тільки після того, як було
 зібрано хоча б один відгук. Повідомлення про відсутність статистики винеси в компонент
 `<Notification message="There is no feedback">`.
-
-![preview](https://github.com/savchyndd/goit-react-hw-02-feedback/assets/96209694/520a3e8e-307d-479f-8b6c-5ddf2e37e20a)
