@@ -1,7 +1,8 @@
 import { FaPhone } from 'react-icons/fa';
 import { CiTrash } from 'react-icons/ci';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts, getFilter, deleteContact } from '../../redux/slice';
+import { deleteContact } from '../../redux/contactsSlice';
+import { getContacts, getFilter } from '../../redux/selectors';
 import css from './ContactList.module.css';
 
 export const ContactList = () => {
