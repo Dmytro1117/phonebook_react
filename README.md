@@ -1,6 +1,6 @@
 # 07-phonebook(async-redux)
 
-- Створений репозиторій `07-phonebook(async-redux))`.
+- Створений репозиторій `07-phonebook(async-redux)`.
 - Використана бібліотека `Redux Toolkit`.
 
 ## Книга контактів
