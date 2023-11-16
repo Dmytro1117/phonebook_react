@@ -12,7 +12,9 @@ export const ContactList = () => {
   const filter = useSelector(getFilter);
 
   const visibleContacts = [
-    ...contacts.filter(contact => contact.name.toLowerCase().includes(filter)),
+    ...contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase()),
+    ),
   ];
 
   const handleDeleteContact = id => {

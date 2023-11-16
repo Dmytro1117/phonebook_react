@@ -7,18 +7,15 @@ export const Filter = () => {
   const dispatch = useDispatch();
   const text = useSelector(getFilter);
 
-  const handlerFindContact = e => {
-    const normalizedValue = e.currentTarget.value.toLowerCase().trim();
-    dispatch(setFilter(normalizedValue));
-  };
-
   return (
     <label className={css.labelName}>
       Знайти по імені
       <input
         type="text"
         value={text}
-        onChange={handlerFindContact}
+        onChange={e => {
+          dispatch(setFilter(e.currentTarget.value));
+        }}
         placeholder="Введіть ім'я"
       />
     </label>
