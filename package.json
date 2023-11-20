@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://dmytro1117.github.io/great-react",
+  "homepage": "https://dmytro1117.github.io/great-react/",
   "scripts": {
     "start": "vite --open",
     "build": "vite build",
