@@ -13,8 +13,7 @@ import { UserMenu } from '../../components/UserMenu/UserMenu';
 import { useSelector } from 'react-redux';
 
 export const AppBar = () => {
-  const { isLoaggedIn, isLoading } = useSelector(state => state.auth); // це для того щоб не було редіректу на логін поки не завантажиться токен
-
+  const { isLoaggedIn, isLoading } = useSelector(state => state.auth);
   return (
     <header>
       {isLoading && <Loader />}

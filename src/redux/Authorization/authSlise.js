@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import { register, loginization, logOut, refreshUser } from './operations';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-// це для того щоб виводити помилки в тостах
 const handlePending = state => {
   state.isLoading = true;
   state.error = null;
