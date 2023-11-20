@@ -2,7 +2,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import { Layout } from './Layout/Layout';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, lazy } from 'react';
-import { PrivateRoute } from './PrivateRoute'; // для захисту роутів
+import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import { Loader } from './Loader/Loader';
 import { refreshUser } from '../redux/Authorization/operations';
@@ -21,7 +21,6 @@ export const App = () => {
 
   const { isRefreshing } = useSelector(state => state.auth);
 
-  // якщо не обновляється токен, то рендеримо компоненти
   return !isRefreshing ? (
     <>
       <Routes>
