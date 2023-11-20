@@ -49,7 +49,15 @@ export const App = () => {
               />
             }
           />
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route
+            path="*"
+            element={
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<Navigate to="/" />}
+              />
+            }
+          />
         </Route>
       </Routes>
     </>
