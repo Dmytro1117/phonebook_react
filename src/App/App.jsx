@@ -3,7 +3,6 @@ import { Statistics } from '../Statistics/Statistics';
 import { FriendList } from '../Friends/FriendList';
 import { TransactionHistory } from '../Transactions/Transactions';
 import { Container } from './App.styled';
-
 import user from '../Data/user.json';
 import data from '../Data/data.json';
 import friends from '../Data/friends.json';
