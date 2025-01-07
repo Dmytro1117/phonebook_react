@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import css from './ContactList.module.css';
 import { FaPhone } from 'react-icons/fa';
 import { CiTrash } from 'react-icons/ci';
+import css from './ContactList.module.css';
 
 export const ContactList = ({ find, deleteContact }) =>
   find.length === 0 ? (
