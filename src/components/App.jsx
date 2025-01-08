@@ -38,9 +38,8 @@ export class App extends Component {
   };
 
   filtrContacts = () => {
-    return this.state.contacts.filter(cont =>
-      cont.name.toLowerCase().includes(this.state.filter.toLowerCase()),
-    );
+    const normalizedFilter = this.state.filter.toLowerCase();
+    return this.state.contacts.filter(cont => cont.name.toLowerCase().includes(normalizedFilter));
   };
 
   deleteContact = id => {
