@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+import PropTypes from 'prop-types';
 import css from './ContactForm.module.css';
 
 const schema = yup.object().shape({

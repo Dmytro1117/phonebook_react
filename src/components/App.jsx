@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { nanoid } from 'nanoid';
 import { Section } from './Section/Section';
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
-import { nanoid } from 'nanoid';
 import css from './App.module.css';
 
 export class App extends Component {
@@ -18,7 +18,7 @@ export class App extends Component {
   };
 
   componentDidMount() {
-    const storageContacts = localStorage.getItem('localContacts');
+    const storageContacts = localStorage.getItem('localStorageContacts');
     const parsedContacts = JSON.parse(storageContacts);
     if (parsedContacts) {
       this.setState({ contacts: parsedContacts });
@@ -27,7 +27,7 @@ export class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.contacts !== prevState.contacts) {
-      localStorage.setItem('localContacts', JSON.stringify(this.state.contacts));
+      localStorage.setItem('localStorageContacts', JSON.stringify(this.state.contacts));
     }
   }
 
@@ -52,14 +52,14 @@ export class App extends Component {
   };
 
   filtrContacts = () => {
-    return this.state.contacts.filter(cont =>
-      cont.name.toLowerCase().includes(this.state.filter.toLowerCase()),
+    return this.state.contacts.filter(contact =>
+      contact.name.toLowerCase().includes(this.state.filter.toLowerCase()),
     );
   };
 
   deleteContact = id => {
-    this.setState(prev => ({
-      contacts: prev.contacts.filter(contact => contact.id !== id),
+    this.setState(prevContact => ({
+      contacts: prevContact.contacts.filter(contact => contact.id !== id),
     }));
   };
 

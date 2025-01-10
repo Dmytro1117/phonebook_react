@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-// import css from './Filter.module.css';
 import css from '../ContactForm/ContactForm.module.css';
 
 export const Filter = ({ text, filterInput }) => (
