@@ -6,8 +6,8 @@ const Loader = () => {
     <LodeWrapper>
       <Triangle
         visible={true}
-        height="280"
-        width="280"
+        height="100"
+        width="100"
         ariaLabel="blocks-loading"
         wrapperStyle={{}}
         wrapperClass="blocks-wrapper"

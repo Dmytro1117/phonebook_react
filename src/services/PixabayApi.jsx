@@ -7,6 +7,7 @@ axios.defaults.params = {
   image_type: 'photo',
   orientation: 'horizontal',
   per_page: 12,
+  order: 'latest',
   safesearch: true,
 };
 
@@ -14,8 +15,3 @@ export const getImages = async (query, page) => {
   const response = await axios.get(`?q=${query}&page=${page}`);
   return response.data;
 };
-
-export const normalizedImages = imagesArray =>
-  imagesArray.map(({ id, tags, webformatURL, largeImageURL }) => {
-    return { id, tags, webformatURL, largeImageURL };
-  });

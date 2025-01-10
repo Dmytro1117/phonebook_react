@@ -18,11 +18,16 @@ class App extends Component {
     error: null,
     isLoading: false,
     totalPages: 0,
-    per_page: 12,
   };
 
   componentDidUpdate(_, prevState) {
     const { searchName, currentPage } = this.state;
+
+    // if (prevState.searchName === this.state.searchName) {
+    //   return toast.error('Sorry ddddddddddddddnd...', {
+    //     position: toast.POSITION.TOP_RIGHT,
+    //   });
+    // }
 
     if (
       prevState.searchName !== this.state.searchName ||
@@ -39,10 +44,20 @@ class App extends Component {
   };
 
   handleSubmit = searchName => {
+    const { searchName: prevSearchName } = this.state;
+
+    if (searchName === prevSearchName) {
+      toast.error('You are currently viewing the collection of this term!', {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      return;
+    }
+
     this.setState({
       searchName,
       images: [],
       currentPage: 1,
+      totalPages: 0,
     });
   };
 
@@ -61,16 +76,14 @@ class App extends Component {
       }
 
       if (page === 1) {
-        toast.success(`Hooray! We found ${data.totalHits} images.`);
+        toast.success(`We found ${data.totalHits} images.`);
       }
 
-      const normalizedImages = API.normalizedImages(data.hits);
-
       this.setState(state => ({
-        images: [...state.images, ...normalizedImages],
-        isLoading: false,
+        images: [...state.images, ...data.hits],
         error: '',
-        totalPages: Math.ceil(data.totalHits / this.state.per_page),
+        totalPages: data.total,
+        isLoading: false,
       }));
     } catch (error) {
       this.setState({ error: 'Something went wrong!' });
@@ -80,23 +93,25 @@ class App extends Component {
   };
 
   render() {
-    const { images, isLoading, currentPage, totalPages, searchName, error } = this.state;
+    const { images, isLoading, totalPages, searchName, error } = this.state;
 
     return (
       <div>
-        <ToastContainer autoClose={2000} theme="dark" />
+        <ToastContainer autoClose={1500} theme="dark" />
         <SearchBar onSubmit={this.handleSubmit} />
+
         {searchName === '' && (
           <Container>
-            <Img src={hero} alt="Mr.Peabody" />
+            <Img src={hero} alt="Mr.Hero" />
             <Tex>Search images and photos</Tex>
           </Container>
         )}
+
         {isLoading && <Loader />}
+
         {images.length > 0 && <ImageGallery images={images} />}
-        {images.length > 0 && totalPages !== currentPage && !isLoading && (
-          <Button onClick={this.loadMore} />
-        )}
+
+        {images.length < totalPages && !error && <Button onClick={this.loadMore} />}
 
         {error && (
           <Container>

@@ -15,12 +15,12 @@ export const ButtonLoad = styled.button`
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  color: black;
-  background-color: gainsboro;
+  color: white;
+  background-color: blue;
 
-  &:hover,
-  &:focus {
+  &:hover {
     color: black;
-    background-color: rgba(255, 255, 126, 1);
+    background-color: gainsboro;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 1);
   }
 `;

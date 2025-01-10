@@ -1,16 +1,18 @@
 import { Component } from 'react';
 import { FcCameraIdentification } from 'react-icons/fc';
+import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 import {
   SearchForm,
   SearchInput,
   SearchButton,
-  // SearchSpan,
   Psxabay,
   SearchLogo,
+  Home,
+  HomeLogo,
 } from './SearchBar.styled';
-import { toast } from 'react-toastify';
 import Logo from '../../images/pixabay-logo.png';
+import HomeIcon from '../../images/home.png';
 
 class SearchBar extends Component {
   state = {
@@ -31,7 +33,7 @@ class SearchBar extends Component {
     }
 
     this.props.onSubmit(this.state.searchName);
-    this.setState({ searchName: '' });
+    // this.setState({ searchName: '' });
   };
 
   render() {
@@ -41,6 +43,9 @@ class SearchBar extends Component {
           <Psxabay href="https://pixabay.com/" target="_blank" rel="noreferrer">
             <SearchLogo src={Logo} alt="logo" />
           </Psxabay>
+          <Home href="https://pixabay.com/" target="_blank" rel="noreferrer">
+            <HomeLogo src={HomeIcon} alt="logoHome" />
+          </Home>
           <SearchInput
             name="searchName"
             type="text"
@@ -52,7 +57,6 @@ class SearchBar extends Component {
           />
           <SearchButton>
             <FcCameraIdentification />
-            {/* <SearchSpan>Search</SearchSpan> */}
           </SearchButton>
         </SearchForm>
       </header>
