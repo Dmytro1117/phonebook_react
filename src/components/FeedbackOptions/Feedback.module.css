@@ -1,18 +1,16 @@
 button {
   font-weight: 600;
-  font-size: 16px;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-top: 40px;
-  transition-duration: 300ms;
-  border-radius: 2px;
+  border-radius: 4px;
   border-style: hidden;
-  min-width: 80px;
-  height: 35px;
-  padding: 5px 10px;
+  min-width: 180px;
+  height: 40px;
   background-color: rgb(20, 141, 222);
   font-family: -apple-system;
-  text-transform: uppercase;
+}
+
+.div {
+  display: flex;
+  gap: 10px;
 }
 
 button:nth-child(1) {
@@ -28,6 +26,6 @@ button:nth-child(3) {
 }
 
 button:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
   cursor: pointer;
 }

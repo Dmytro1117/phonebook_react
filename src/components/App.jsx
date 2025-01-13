@@ -35,12 +35,12 @@ export const App = () => {
     return total ? Math.round((good * 100) / total) : 0;
   };
 
-  const options = ['good', 'neutral', 'bad'];
+  const buttons = ['good', 'neutral', 'bad'];
 
   return (
     <>
       <Section title="Please leave feedback:">
-        <FeedbackOptions options={options} onLeaveFeedback={updateState} />
+        <FeedbackOptions options={buttons} onLeaveFeedback={updateState} />
       </Section>
 
       <Section title="Statistics:">
