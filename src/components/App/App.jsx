@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import * as API from '../../services/PixabayApi';
 import SearchBar from '../SearchBar/SearchBar';
 import ImageGallery from '../ImageGallery/ImageGallery';
 import Loader from '../Loader/Loader';
 import Button from '../Button/Button';
 import { Tex, Img, Container } from './App.styled';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import notFound from '../../images/notfound.png';
 import hero from '../../images/hero.png';
 
@@ -16,8 +16,7 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [totalPages, setTotalPages] = useState(0);
-  const [per_page, setPer_page] = useState(12);
+  const [totalPages, setsTotalPages] = useState(0);
 
   useEffect(() => {
     addImages(searchName, currentPage);
@@ -27,10 +26,18 @@ const App = () => {
     setCurrentPage(currentPage + 1);
   };
 
-  const handleSubmit = searchName => {
-    setSearchName(searchName);
+  const handleSubmit = newSearchName => {
+    if (newSearchName === searchName) {
+      toast.error('You are currently viewing the collection of this term!', {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      return;
+    }
+
+    setSearchName(newSearchName);
     setImages([]);
     setCurrentPage(1);
+    setsTotalPages(0);
   };
 
   const addImages = async (query, page) => {
@@ -42,21 +49,19 @@ const App = () => {
       const data = await API.getImages(query, page);
       if (data.hits.length === 0) {
         setError('Something went wrong!');
-        return toast.info('Sorry, image not found...', {
+        return toast.info('Sorry image not found...', {
           position: toast.POSITION.TOP_RIGHT,
         });
       }
 
       if (page === 1) {
-        toast.success(`Hooray! We found ${data.totalHits} images.`);
+        toast.success(`We found ${data.totalHits} images.`);
       }
 
-      const normalizedImages = API.normalizedImages(data.hits);
-
-      setImages([...images, ...normalizedImages]);
+      setImages([...images, ...data.hits]);
+      setError('');
+      setsTotalPages(data.total);
       setIsLoading(false);
-      setError(null);
-      setTotalPages(Math.ceil(data.totalHits / per_page));
     } catch (error) {
       setError('Something went wrong!');
     } finally {
@@ -66,19 +71,21 @@ const App = () => {
 
   return (
     <div>
-      <ToastContainer autoClose={2000} theme="dark" />
+      <ToastContainer autoClose={1500} theme="dark" />
       <SearchBar onSubmit={handleSubmit} />
+
       {searchName === '' && (
         <Container>
-          <Img src={hero} alt="Mr.Peabody" />
+          <Img src={hero} alt="Mr.Hero" />
           <Tex>Search images and photos</Tex>
         </Container>
       )}
+
       {isLoading && <Loader />}
+
       {images.length > 0 && <ImageGallery images={images} />}
-      {images.length > 0 && totalPages !== currentPage && !isLoading && (
-        <Button onClick={loadMore} />
-      )}
+
+      {images.length < totalPages && !error && <Button onClick={loadMore} />}
 
       {error && (
         <Container>

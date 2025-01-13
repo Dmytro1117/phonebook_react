@@ -5,7 +5,7 @@ import { Overlay, ModalWindow } from './Modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
-const Modal = ({ onClose, largeImageURL, tags }) => {
+const Modal = ({ largeImageURL, tags, onClose }) => {
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     document.body.style.overflow = 'hidden';
@@ -13,7 +13,7 @@ const Modal = ({ onClose, largeImageURL, tags }) => {
       window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'visible';
     };
-  });
+  }, []);
 
   const handleKeyDown = event => {
     if (event.code === 'Escape') {

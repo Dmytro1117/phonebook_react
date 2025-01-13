@@ -45,10 +45,6 @@ export const SearchButton = styled.button`
   }
 `;
 
-// export const SearchSpan = styled.span`
-//   padding: 10px;
-// `;
-
 export const SearchLogo = styled.img`
   // margin-right: 50px;
   width: 100px;
@@ -57,5 +53,16 @@ export const SearchLogo = styled.img`
 export const Psxabay = styled.a`
   position: absolute;
   top: 17px;
+  right: 20px;
+`;
+
+export const HomeLogo = styled.img`
+  // margin-right: 50px;
+  width: 50px;
+`;
+
+export const Home = styled.a`
+  position: absolute;
+  top: 2px;
   left: 20px;
 `;
