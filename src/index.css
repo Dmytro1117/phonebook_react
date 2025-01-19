@@ -4,7 +4,8 @@ body {
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background-color: rgba(187, 236, 226, 0.753); */
+  /* background-color: #b3afafd7; */
+  /* color: #fff; */
 }
 
 code {
@@ -25,4 +26,11 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+ul {
+  list-style: none;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
 }

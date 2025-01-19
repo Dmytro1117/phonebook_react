@@ -1,15 +1,15 @@
 import styled from '@emotion/styled';
 
 export const Tex = styled.p`
-  color: orange;
+  color: #007bff;
   padding: 10px;
-  font-size: 44px;
+  font-size: 34px;
   margin: 0;
 `;
 
 export const Img = styled.img`
-  object-fit: contain;
-  object-position: center;
+  width: 450px;
+  height: auto;
   display: flex;
   margin: 0 auto;
 `;
@@ -19,5 +19,4 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  min-height: calc(100vh - 140px);
 `;

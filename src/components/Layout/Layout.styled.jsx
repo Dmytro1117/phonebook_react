@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 1170px;
+  max-width: 1370px;
   margin-left: auto;
   margin-right: auto;
   min-height: 100vh;
@@ -14,6 +14,8 @@ export const Content = styled.div`
   flex: 1;
   padding-left: 20px;
   padding-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 `;
 
 export const Navigation = styled.nav``;
@@ -35,11 +37,11 @@ export const Link = styled(NavLink)`
   color: #191d1e;
 
   &.active {
-    color: tomato;
+    color: #007bff;
   }
 
   &:hover {
-    color: tomato;
+    color: #007bff;
   }
 `;
 

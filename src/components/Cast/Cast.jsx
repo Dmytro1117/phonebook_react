@@ -1,14 +1,17 @@
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import { animateScroll } from 'react-scroll';
+
 import { fetchActors } from '../../services/TmbdApi';
 import Loader from '../../components/Loader/Loader';
-import { List, Text, ListItem } from './Cast.styled';
-import { animateScroll } from 'react-scroll';
+import { List, Text, ListItem, Title, NotCast } from './Cast.styled';
 
 const Cast = () => {
   const { movieId } = useParams();
   const [actors, setActors] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const castRef = useRef(null);
 
   useEffect(() => {
     const onActorsOfMovie = () => {
@@ -27,16 +30,19 @@ const Cast = () => {
     };
 
     onActorsOfMovie();
+
+    if (castRef.current) {
+      animateScroll.scrollTo(castRef.current.offsetTop, {
+        duration: 1500,
+        smooth: 'easeInOutQuad',
+      });
+    }
   }, [movieId]);
 
-  if (actors) {
-    animateScroll.scrollMore(500);
-  }
-
   return (
-    <div>
+    <div ref={castRef}>
       {loading && <Loader />}
-
+      <Title>Cast</Title>
       <List>
         {actors.map(({ id, profile_path, original_name, name, character }) => (
           <ListItem key={id}>
@@ -59,6 +65,7 @@ const Cast = () => {
           </ListItem>
         ))}
       </List>
+      {actors.length === 0 && <NotCast>We don't have cast for this movie</NotCast>}
     </div>
   );
 };

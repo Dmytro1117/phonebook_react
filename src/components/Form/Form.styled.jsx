@@ -3,20 +3,10 @@ import styled from '@emotion/styled';
 export const SearchForm = styled.form`
   margin-left: auto;
   margin-right: auto;
-  margin-top: 28px;
-  margin-bottom: 18px;
+  margin-bottom: 40px;
   display: flex;
   justify-content: center;
   max-width: 400px;
-`;
-
-export const Img = styled.img`
-  width: 550px;
-  height: auto;
-  object-fit: contain;
-  object-position: center;
-  display: flex;
-  margin: 0 auto;
 `;
 
 export const Input = styled.input`
@@ -31,8 +21,8 @@ export const Input = styled.input`
   padding-right: 10px;
 
   &:hover {
-    color: tomato;
-    border: 1px solid tomato;
+    color: #007bff;
+    border: 1px solid #007bff;
   }
 `;
 
@@ -46,10 +36,10 @@ export const Button = styled.button`
   color: black;
   font-weight: 600;
   color: white;
-  background-color: orangered;
+  background-color: #007bff;
 
   &:hover {
-    color: orange;
+    color: white;
     background-color: gray;
   }
 `;

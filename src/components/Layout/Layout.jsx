@@ -15,7 +15,7 @@ export const Layout = () => {
 
         <Navigation>
           <Link to="/home">Home</Link>
-          <Link to="/movies">Movies</Link>
+          <Link to="/search-movie">Search movie</Link>
         </Navigation>
       </Header>
 

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const Tex = styled.p`
-  color: orange;
+  color: #007bff;
   padding: 10px;
   font-size: 44px;
   margin: 0;
@@ -9,7 +9,6 @@ export const Tex = styled.p`
 
 export const Img = styled.img`
   width: 450px;
-
   object-fit: contain;
   object-position: center;
   display: flex;

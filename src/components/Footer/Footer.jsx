@@ -4,7 +4,7 @@ import { Tex, Footerr } from './Footer.styled';
 const Footer = () => {
   return (
     <Footerr>
-      <Tex>&#169; 2023 | All Rights Reserved |</Tex>
+      <Tex>&#169; 2025 | All Rights Reserved |</Tex>
     </Footerr>
   );
 };

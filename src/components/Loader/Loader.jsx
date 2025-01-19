@@ -11,7 +11,7 @@ const Loader = () => {
         ariaLabel="blocks-loading"
         wrapperStyle={{}}
         wrapperClass="blocks-wrapper"
-        color="orangered"
+        color=" #007bff"
       />
     </LodeWrapper>
   );

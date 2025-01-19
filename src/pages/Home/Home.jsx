@@ -1,20 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import MoviesList from '../../pages/MoviesList/MoviesList';
+import { useEffect, useState, useRef } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { animateScroll } from 'react-scroll';
+import MoviesList from '../../components/MoviesList/MoviesList';
+import Pagination from '../../components/Pagination/Pagination';
 import { fetchTrending } from '../../services/TmbdApi';
 import Loader from '../../components/Loader/Loader';
-import { Title } from './Home.styled';
 
 const Home = () => {
+  const navigate = useNavigate();
+  const [totalPage, setTotalPage] = useState(0);
   const [films, setFilms] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [searchParams] = useSearchParams();
+
+  const page = searchParams.get('page') ?? 1;
+  const pageRef = useRef(null);
 
   useEffect(() => {
     const fetchTrendingFilms = () => {
       setLoading(true);
 
-      fetchTrending()
+      fetchTrending(page)
         .then(trendingFilms => {
-          setFilms(trendingFilms);
+          setFilms(trendingFilms.results);
+          setTotalPage(trendingFilms.total_pages);
         })
         .catch(error => {
           console.log(error);
@@ -25,14 +34,31 @@ const Home = () => {
     };
 
     fetchTrendingFilms();
-  }, []);
+  }, [page]);
+
+  const handlePageChange = newPage => {
+    navigate(`?page=${newPage}`);
+    if (pageRef.current) {
+      animateScroll.scrollTo(pageRef.current.offsetTop, {
+        duration: 1500,
+        smooth: 'easeInOutQuad',
+      });
+    }
+  };
 
   return (
-    <main>
-      <Title>Trending today</Title>
+    <main ref={pageRef}>
       <MoviesList films={films} />
 
       {loading && <Loader />}
+
+      {totalPage > 1 && (
+        <Pagination
+          totalPage={totalPage}
+          currentPage={Number(page)}
+          onPageChange={handlePageChange}
+        />
+      )}
     </main>
   );
 };
