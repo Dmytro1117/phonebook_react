@@ -1,24 +1,32 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { FaPhone } from 'react-icons/fa';
 import { CiTrash } from 'react-icons/ci';
-import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from '../../redux/contactsSlice';
-import { getContacts, getFilter } from '../../redux/selectors';
+import { getContacts, sortContacts } from '../../redux/selectors';
 import css from './ContactList.module.css';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
-  const filter = useSelector(getFilter);
+  const allContacts = useSelector(getContacts);
+  const sortedContacts = useSelector(sortContacts);
 
-  const filtrContacts = () => {
-    return contacts.filter(cont => cont.name.toLowerCase().includes(filter.toLowerCase()));
+  const handleDeleteContact = id => {
+    dispatch(deleteContact(id));
+    Notify.failure(`Delete complited`);
   };
 
-  return filtrContacts().length === 0 ? (
+  const filtrContacts = [
+    ...allContacts.filter(contact =>
+      contact.name.toLowerCase().includes(sortedContacts.toLowerCase()),
+    ),
+  ];
+
+  return filtrContacts.length === 0 ? (
     <p>Контактів не знайдено</p>
   ) : (
     <ul>
-      {filtrContacts().map(({ id, name, number }) => {
+      {filtrContacts.map(({ id, name, number }) => {
         return (
           <li key={id}>
             <FaPhone className={css.icon} size={20} />
@@ -29,7 +37,7 @@ export const ContactList = () => {
               type="button"
               className={css.iconDelete}
               size={24}
-              onClick={() => dispatch(deleteContact({ id }))}
+              onClick={() => handleDeleteContact({ id })}
             />
           </li>
         );

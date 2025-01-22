@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const contactsInitialState = [
   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -11,33 +10,17 @@ const contactsInitialState = [
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: contactsInitialState,
+
   reducers: {
     addContact(state, action) {
-      if (
-        state.some(
-          num =>
-            num.name.toLowerCase() === action.payload.name.toLowerCase() ||
-            num.number === action.payload.number,
-        )
-      ) {
-        return Notify.warning(
-          `${action.payload.name} or ${action.payload.number} is already in contacts`,
-        );
-      }
-
-      //1-й спосіб:
-      Notify.success(`${action.payload.name}: ${action.payload.number} added successfully`);
       return [action.payload, ...state];
-
-      // 2-й спосіб:
-      // state.unshift(action.payload);
     },
     deleteContact(state, action) {
-      Notify.failure(`Delete complited`);
       return state.filter(contact => contact.id !== action.payload.id);
     },
   },
 });
 
 export const { addContact, deleteContact } = contactsSlice.actions;
+
 export const contactsReducer = contactsSlice.reducer;

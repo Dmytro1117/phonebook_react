@@ -1,8 +1,10 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as yup from 'yup';
 import { nanoid } from 'nanoid';
-import { useDispatch } from 'react-redux';
+import * as yup from 'yup';
 import { addContact } from '../../redux/contactsSlice';
+import { getContacts } from '../../redux/selectors';
 import css from './ContactForm.module.css';
 
 const schema = yup.object().shape({
@@ -24,15 +26,28 @@ const initialValues = {
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
+  const allContacts = useSelector(getContacts);
 
   const handleSubmit = ({ name, number }, { resetForm }) => {
-    dispatch(
-      addContact({
-        id: nanoid(),
-        name,
-        number,
-      }),
-    );
+    const newContact = {
+      id: nanoid(),
+      name,
+      number,
+    };
+
+    if (
+      allContacts.some(
+        num =>
+          num.name.toLowerCase() === newContact.name.toLowerCase() ||
+          num.number === newContact.number,
+      )
+    ) {
+      return Notify.warning(`${newContact.name} or ${newContact.number} is already in contacts`);
+    }
+
+    Notify.success(`${newContact.name}: ${newContact.number} added successfully`);
+
+    dispatch(addContact(newContact));
     resetForm();
   };
 
