@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Section } from './Section/Section';
-import { ContactForm } from './ContactForm/ContactForm';
-import { ContactList } from './ContactList/ContactList';
-import { Filter } from './Filter/Filter';
-import { Loader } from './Loader/Loader';
 import { fetchContacts } from '../redux/operations';
 import { selectError, selectIsLoading } from '../redux/selectors';
+import { Section } from './Section/Section';
+import { Loader } from '../components/Loader/Loader';
+import { ContactForm } from './ContactForm/ContactForm';
+import { ContactList } from './ContactList/ContactList';
+import { ContactFilter } from './ContactFilter/ContactFilter';
 import css from './App.module.css';
 
 export const App = () => {
@@ -20,14 +20,16 @@ export const App = () => {
 
   return (
     <div className={css.container}>
-      <h1 className={css.titlePage}>Телефонна книжка</h1>
+      <h1 className={css.titlePage}>Телефонний записник</h1>
+
+      {isLoading && !error && <Loader />}
+
       <Section title={'Додати новий контакт:'}>
         <ContactForm />
       </Section>
 
-      <Section title="Ваші контакти:">
-        <Filter />
-        {isLoading && !error && <Loader />}
+      <Section title="Контакти:">
+        <ContactFilter />
         <ContactList />
       </Section>
     </div>

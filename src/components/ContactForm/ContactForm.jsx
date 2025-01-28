@@ -1,19 +1,15 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { useDispatch } from 'react-redux';
 import { addContact } from '../../redux/operations';
-import { useSelector } from 'react-redux';
-import { getContacts } from '../../redux/selectors';
+import { selectAllContacts } from '../../redux/selectors';
 import css from './ContactForm.module.css';
 
 const schema = yup.object().shape({
   name: yup
     .string()
-    .matches(
-      /^\p{Lu}[\p{L}\s.'-]+$/u,
-      "Ім'я має починатися з великої літери (без цифр)",
-    )
+    .matches(/^\p{Lu}[\p{L}\s.'-]+$/u, "Ім'я має починатися з великої літери (без цифр)")
     .max(25, 'Максимальна довжина 25 символів')
     .required("Ім'я є обов'язковим полем"),
   phone: yup
@@ -29,35 +25,32 @@ const initialValues = {
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const allContacts = useSelector(selectAllContacts);
 
   const handleSubmit = ({ name, phone }, { resetForm }) => {
+    const newContact = {
+      name,
+      phone,
+    };
+
     if (
-      contacts.some(
+      allContacts.some(
         num =>
-          num.name.toLowerCase() === name.toLowerCase() || num.phone === phone,
+          num.name.toLowerCase() === newContact.name.toLowerCase() ||
+          num.phone === newContact.phone,
       )
     ) {
-      return Notify.warning(`${name} or ${phone} is already in contacts`);
+      return Notify.warning(`${newContact.name} or ${newContact.phone} is already in contacts`);
     }
 
-    dispatch(
-      addContact({
-        name,
-        phone,
-      }),
-    );
+    Notify.success(`${newContact.name}: ${newContact.phone} added successfully`);
 
-    Notify.success(`${name}: ${phone} added successfully`);
+    dispatch(addContact(newContact));
     resetForm();
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={schema}
-      onSubmit={handleSubmit}
-    >
+    <Formik initialValues={initialValues} validationSchema={schema} onSubmit={handleSubmit}>
       <Form autoComplete="off">
         <label className={css.labelName} htmlFor="name">
           Ім'я
