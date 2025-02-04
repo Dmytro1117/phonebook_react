@@ -1,6 +1,6 @@
-import { register } from '../../redux/Authorization/operations';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { register } from '../../redux/auth/operationsAuth';
 import { Input, Container, But, Title } from './Register.styled';
 
 const Register = () => {
@@ -30,6 +30,7 @@ const Register = () => {
   const handleSubmit = event => {
     event.preventDefault();
     dispatch(register({ name, email, password }));
+    console.log(name, email, password);
 
     setName('');
     setEmail('');
@@ -38,15 +39,9 @@ const Register = () => {
 
   return (
     <Container>
-      <Title>Зареєструвати нового користувача</Title>
+      <Title>Реєстрація</Title>
       <form onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          name="name"
-          value={name}
-          placeholder="Name"
-          onChange={handleChange}
-        />
+        <Input type="text" name="name" value={name} placeholder="Name" onChange={handleChange} />
         <Input
           type="email"
           name="email"
@@ -61,9 +56,7 @@ const Register = () => {
           placeholder="Password"
           onChange={handleChange}
         />
-        <But type="primary" htmlType="submit">
-          Зареєструватись
-        </But>
+        <But htmlType="submit">Зареєструватись</But>
       </form>
     </Container>
   );

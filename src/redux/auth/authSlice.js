@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, loginization, logOut, refreshUser } from './operations';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { register, loginization, logOut, refreshUser } from './operationsAuth';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -18,15 +18,15 @@ const handleRejected = (state, action) => {
   );
 };
 
-const authSlise = createSlice({
+const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    user: { email: null, password: null },
+    user: { name: null, email: null, password: null },
     token: null,
     isLoaggedIn: false,
     isRefreshing: false,
-    error: null,
     isLoading: false,
+    error: null,
   },
   extraReducers: builder => {
     builder
@@ -50,7 +50,7 @@ const authSlise = createSlice({
 
       .addCase(logOut.pending, handlePending)
       .addCase(logOut.fulfilled, state => {
-        state.user = { email: null, password: null };
+        state.user = { name: null, email: null, password: null };
         state.token = null;
         state.isLoaggedIn = false;
         state.isRefreshing = false;
@@ -73,4 +73,4 @@ const authSlise = createSlice({
   },
 });
 
-export const authReduser = authSlise.reducer;
+export const authReduser = authSlice.reducer;

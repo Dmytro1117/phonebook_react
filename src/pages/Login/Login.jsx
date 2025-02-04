@@ -1,12 +1,7 @@
 import { useState } from 'react';
-import { loginization } from '../../redux/Authorization/operations';
+import { loginization } from '../../redux/auth/operationsAuth';
 import { useDispatch } from 'react-redux';
-import {
-  Input,
-  Container,
-  But,
-  Title,
-} from '../../pages/Register/Register.styled';
+import { Input, Container, But, Title } from '../../pages/Register/Register.styled';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -53,9 +48,7 @@ const Login = () => {
           placeholder="Password"
           onChange={handleChange}
         />
-        <But type="primary" htmlType="submit">
-          Увійти
-        </But>
+        <But htmlType="submit">Увійти</But>
       </form>
     </Container>
   );
