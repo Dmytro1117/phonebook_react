@@ -1,14 +1,17 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import {
-  UserAddOutlined,
-  LoginOutlined,
-  HomeOutlined,
-  TeamOutlined,
-} from '@ant-design/icons';
+import { UserAddOutlined, LoginOutlined, HomeOutlined, TeamOutlined } from '@ant-design/icons';
+
+export const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  border-bottom: 2px solid #3a97e8;
+  padding: 0 15px;
+`;
 
 export const Nav = styled.nav`
   display: flex;
+  width: 1200px;
   gap: 30px;
   justify-content: space-between;
   height: 60px;
@@ -16,7 +19,7 @@ export const Nav = styled.nav`
 `;
 
 export const Link = styled(NavLink)`
-  &:first-child {
+  &:not(:last-child) {
     margin-right: 20px;
   }
 
@@ -47,7 +50,6 @@ export const ContactIcon = styled(TeamOutlined)`
   margin-right: 8px;
 `;
 
-export const Container = styled.div`
-  padding: 0 15px;
-  width: 1200px;
+export const AddContactIcon = styled(UserAddOutlined)`
+  margin-right: 8px;
 `;

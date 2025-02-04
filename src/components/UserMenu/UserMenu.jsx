@@ -1,21 +1,21 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Avatar } from 'antd';
-import { Wrap, Buton } from './Usermenu.styled';
-import { logOut } from '../../redux/Authorization/operations';
-import { useDispatch } from 'react-redux';
 import { LogoutOutlined } from '@ant-design/icons';
+import { logOut } from '../../redux/auth/operationsAuth';
+import { selectUser } from '../../redux/auth/authSelectors';
+import { WrapperUser, ButtonLogout } from './Usermenu.styled';
 
 export const UserMenu = () => {
-  const { email } = useSelector(state => state.auth.user);
+  const { email } = useSelector(selectUser);
   const dispatch = useDispatch();
 
   return (
-    <Wrap>
+    <WrapperUser>
       <Avatar>{email.slice(0, 1).toUpperCase()}</Avatar>
       <p>{email}</p>
-      <Buton type="default" onClick={() => dispatch(logOut())}>
+      <ButtonLogout type="default" onClick={() => dispatch(logOut())}>
         <LogoutOutlined /> Вийти
-      </Buton>
-    </Wrap>
+      </ButtonLogout>
+    </WrapperUser>
   );
 };

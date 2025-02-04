@@ -1,11 +1,11 @@
 import React from 'react';
-import { Tex, Footerr } from './Footer.styled';
+import { TextFooter, FooterStyled } from './Footer.styled';
 
 const Footer = () => {
   return (
-    <Footerr>
-      <Tex>&#169; 2023 | Всі права захищені |</Tex>
-    </Footerr>
+    <FooterStyled>
+      <TextFooter>&#169; 2025 | Всі права захищені |</TextFooter>
+    </FooterStyled>
   );
 };
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Footerr = styled.footer`
+export const FooterStyled = styled.footer`
   border-top: 2px solid #3a97e8;
   display: flex;
   align-items: center;
@@ -9,7 +9,7 @@ export const Footerr = styled.footer`
   margin-top: auto;
 `;
 
-export const Tex = styled.p`
+export const TextFooter = styled.p`
   padding: 10px;
   font-size: 14px;
   margin: 0;

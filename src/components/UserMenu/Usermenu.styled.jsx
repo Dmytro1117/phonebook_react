@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import { Button } from 'antd';
 
-export const Wrap = styled.div`
+export const WrapperUser = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
 `;
 
-export const Buton = styled(Button)`
+export const ButtonLogout = styled(Button)`
   border-radius: 2px;
 `;

@@ -1,3 +1,6 @@
+import { useSelector } from 'react-redux';
+import { UserMenu } from '../../components/UserMenu/UserMenu';
+import { selectIsLoggedIn } from '../../redux/auth/authSelectors';
 import {
   Nav,
   Link,
@@ -5,19 +8,15 @@ import {
   LogInIcon,
   HomeIcon,
   ContactIcon,
+  AddContactIcon,
   Container,
 } from './AppBar.styled';
 
-import { Loader } from '../Loader/Loader';
-import { UserMenu } from '../../components/UserMenu/UserMenu';
-import { useSelector } from 'react-redux';
-
 export const AppBar = () => {
-  const { isLoaggedIn, isLoading } = useSelector(state => state.auth);
+  const isLoaggedIn = useSelector(selectIsLoggedIn);
+
   return (
     <header>
-      {isLoading && <Loader />}
-
       <Container>
         <Nav>
           <div>
@@ -26,10 +25,16 @@ export const AppBar = () => {
               Головна
             </Link>
             {isLoaggedIn && (
-              <Link to="/contacts">
-                <ContactIcon />
-                Контакти
-              </Link>
+              <>
+                <Link to="/contacts">
+                  <ContactIcon />
+                  Контакти
+                </Link>
+                <Link to="/form_contact">
+                  <AddContactIcon />
+                  Form
+                </Link>
+              </>
             )}
           </div>
           <div>
