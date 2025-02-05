@@ -21,7 +21,7 @@ const handleRejected = (state, action) => {
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    user: { name: null, email: null, password: null },
+    user: { name: null, email: null },
     token: null,
     isLoaggedIn: false,
     isRefreshing: false,
@@ -50,7 +50,7 @@ const authSlice = createSlice({
 
       .addCase(logOut.pending, handlePending)
       .addCase(logOut.fulfilled, state => {
-        state.user = { name: null, email: null, password: null };
+        state.user = { name: null, email: null };
         state.token = null;
         state.isLoaggedIn = false;
         state.isRefreshing = false;
@@ -64,8 +64,8 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.user = action.payload;
-        state.isLoaggedIn = true;
         state.isRefreshing = false;
+        state.isLoaggedIn = true;
       })
       .addCase(refreshUser.rejected, (state, action) => {
         state.isRefreshing = false;
