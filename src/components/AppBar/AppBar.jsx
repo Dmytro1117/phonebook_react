@@ -32,7 +32,7 @@ export const AppBar = () => {
                 </Link>
                 <Link to="/form_contact">
                   <AddContactIcon />
-                  Form
+                  Додати новий контакт
                 </Link>
               </>
             )}
