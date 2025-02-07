@@ -6,6 +6,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   border-bottom: 2px solid #3a97e8;
+  background-color: rgba(72, 75, 77, 0.09);
   padding: 0 15px;
 `;
 

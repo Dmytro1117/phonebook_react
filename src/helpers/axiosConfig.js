@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-export const baseURL = (axios.defaults.baseURL = 'https://connections-api.goit.global');
+export const baseURL = (axios.defaults.baseURL =
+  'https://phonebook-api-backend-v92w.onrender.com/api');
 
 export const setAuthHeader = token =>
   (axios.defaults.headers.common.Authorization = `Bearer ${token}`);

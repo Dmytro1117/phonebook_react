@@ -13,7 +13,7 @@ const schema = yup.object().shape({
     .matches(/^\p{Lu}[\p{L}\s.'-]+$/u, "Ім'я має починатися з великої літери (без цифр)")
     .max(25, 'Максимальна довжина 25 символів')
     .required("Ім'я є обов'язковим полем"),
-  number: yup
+  phone: yup
     .string()
     .matches(/^\d{3}-\d{2}-\d{2}$/, 'Номер має бути в форматі 555-55-55')
     .required("Номер є обов'язковим полем"),
@@ -21,30 +21,30 @@ const schema = yup.object().shape({
 
 const initialValues = {
   name: '',
-  number: '',
+  phone: '',
 };
 
 export default function ContactForm() {
   const dispatch = useDispatch();
   const allContacts = useSelector(selectAllContacts);
 
-  const handleSubmit = ({ name, number }, { resetForm }) => {
+  const handleSubmit = ({ name, phone }, { resetForm }) => {
     const newContact = {
       name,
-      number,
+      phone,
     };
 
     if (
       allContacts.some(
         num =>
           num.name.toLowerCase() === newContact.name.toLowerCase() ||
-          num.number === newContact.number,
+          num.phone === newContact.phone,
       )
     ) {
-      return Notify.warning(`${newContact.name} or ${newContact.number} is already in contacts`);
+      return Notify.warning(`${newContact.name} or ${newContact.phone} is already in contacts`);
     }
 
-    Notify.success(`${newContact.name}: ${newContact.number} added successfully`);
+    Notify.success(`${newContact.name}: ${newContact.phone} added successfully`);
 
     dispatch(addContact(newContact));
     resetForm();
@@ -59,12 +59,11 @@ export default function ContactForm() {
             <Input placeholder="Введіть ім'я" type="text" name="name" />
             <Error name="name" component="div" />
           </Label>
-          <Label htmlFor="number">
+          <Label htmlFor="phone">
             Номер телефону
-            <Input placeholder="Введіть номер" type="tel" name="number" />
-            <Error name="number" component="div" />
+            <Input placeholder="Введіть номер" type="tel" name="phone" />
+            <Error name="phone" component="div" />
           </Label>
-
           <ButtonSubmit type="submit">Додати до записника</ButtonSubmit>
         </Form>
       </Formik>

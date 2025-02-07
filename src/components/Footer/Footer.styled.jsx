@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const FooterStyled = styled.footer`
   border-top: 2px solid #3a97e8;
+  background-color: rgba(72, 75, 77, 0.09);
   display: flex;
   align-items: center;
   justify-content: center;

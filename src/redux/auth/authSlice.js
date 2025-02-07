@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { register, loginization, logOut, refreshUser } from './operationsAuth';
+import { register, loginization, logOut, refreshUser, verificationUser } from './operationsAuth';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -10,12 +10,6 @@ const handlePending = state => {
 const handleRejected = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
-
-  Notify.failure(
-    `${action.payload}` === 'Network Error'
-      ? `${action.payload}`
-      : 'Something went wrong. Check your data and try again',
-  );
 };
 
 const authSlice = createSlice({
@@ -32,17 +26,20 @@ const authSlice = createSlice({
     builder
       .addCase(register.pending, handlePending)
       .addCase(register.fulfilled, (state, action) => {
-        state.token = action.payload.token;
-        state.user = action.payload.user;
-        state.isLoaggedIn = true;
+        state.user = action.payload;
         state.isLoading = false;
       })
       .addCase(register.rejected, handleRejected)
+      .addCase(verificationUser.pending, handlePending)
+      .addCase(verificationUser.fulfilled, (state, _) => {
+        state.isLoading = false;
+      })
+      .addCase(verificationUser.rejected, handleRejected)
 
       .addCase(loginization.pending, handlePending)
       .addCase(loginization.fulfilled, (state, action) => {
-        state.token = action.payload.token;
         state.user = action.payload.user;
+        state.token = action.payload.token;
         state.isLoaggedIn = true;
         state.isLoading = false;
       })

@@ -1,25 +1,27 @@
-# React (Redux Toolkit)
+# Phonebook
 
-Матеріал для тих, хто хоче освоїти фронтенд-розробку за допомогою React — однієї з найпопулярніших
-бібліотек для створення веб-інтерфейсів.
+![React](./assets/Phonebook.png)
 
+![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
+![NPM](https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white)
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)
 ![Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 
-## Основні теми:
+## Опис проекту
 
-- Вступ до React: Що таке React, його можливості та принципи роботи.
-- Компоненти та пропси: Створення та використання компонентів, передача даних через пропси.
-- Стан і керування даними: Використання useState, useEffect та контексту.
-- Робота з подіями: Обробка подій у React.
-- Маршрутизація: Використання React Router для навігації.
-- Запити до сервера: Робота з API, отримання та обробка даних.
-- Стан додатка: Redux або React Context для управління глобальним станом.
-- Redux Toolkit:
-  - Основи Redux, концепція стору, редьюсерів та екшенів.
-  - Використання createSlice для спрощення роботи зі станом.
-  - Використання createAsyncThunk для асинхронних запитів.
-  - Налаштування Redux DevTools.
-- Аутентифікація: Реєстрація, вхід у систему, робота з JWT-токенами.
-- Розгортання додатка: Деплой на Vercel.
+`Phonebook:` Можливість зберігати та організовувати свій список контактів, створювати нові контакти,
+визначати їхні ролі та важливість, також змінювати їх статуси, додавати фотографії user та самим
+контактним номерам.
+
+`Основні функції:`
+
+- Реєстрація та Авторизація.
+- Cтворення нових контактів, включаючи ім'я, номер телефону, додавання до улюблених та фотографій.
+- Додавання фотографії user, статусу (Standart, Pro, Vip).
+- Верифікація електронної пошти, щоб забезпечити, що адреси користувачів є дійсними.
+
+## Технічні характеристики
+
+`Посилання на сайт:`

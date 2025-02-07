@@ -16,7 +16,9 @@ export const selectVisibleContacts = createSelector(
 
 // export const selectVisibleContacts = state => {
 //   const contacts = selectAllContacts(state);
+//   console.log('Contacts from state:', contacts);
 //   const sortedContacts = selectSortContacts(state);
+//   console.log('Contacts from state:', sortedContacts);
 //   const filterContacts = contacts.filter(contact =>
 //     contact.name.toLowerCase().includes(sortedContacts.toLowerCase()),
 //   );

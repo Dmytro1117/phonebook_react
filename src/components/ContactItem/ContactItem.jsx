@@ -15,9 +15,9 @@ export const ContactItem = ({ item }) => {
     <>
       <FaPhoneStyled size={20} />
       <ContactInfo>
-        {item.name}: {item.number}
+        {item.name}: {item.phone}
       </ContactInfo>
-      <CiTrashStyled type="button" size={24} onClick={() => handleDeleteContact(item.id)} />
+      <CiTrashStyled type="button" size={24} onClick={() => handleDeleteContact(item._id)} />
     </>
   );
 };
