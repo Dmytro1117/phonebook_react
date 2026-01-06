@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { baseURL, setAuthHeader, cleanAuthHeader } from '../../helpers/axiosConfig';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { setAuthHeader, cleanAuthHeader } from '../../helpers/axiosConfig';
 
 export const register = createAsyncThunk('auth/register', async (user, { rejectWithValue }) => {
   try {
@@ -9,10 +9,18 @@ export const register = createAsyncThunk('auth/register', async (user, { rejectW
     Notify.success('Registration successful! Please check your email to verify your account.');
     return response.data.user;
   } catch (error) {
-    if (error.response.status === 409 || error.response.status === 400) {
-      error.response?.data?.message.forEach(msg => {
-        Notify.failure(msg);
-      });
+    const serverMessage = error.response?.data?.message;
+
+    if (error.response?.status === 409) {
+      Notify.failure(serverMessage || 'User with this email already exists!');
+    } else if (error.response?.status === 400) {
+      if (Array.isArray(serverMessage)) {
+        serverMessage.forEach(msg => Notify.failure(msg));
+      } else {
+        Notify.failure(serverMessage || 'Invalid data entered');
+      }
+    } else {
+      Notify.failure('Something went wrong. Please try again.');
     }
 
     return rejectWithValue(error.message);
@@ -24,11 +32,13 @@ export const verificationUser = createAsyncThunk(
   async (verificationToken, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(`/auth/verify/${verificationToken}`);
-      Notify.success(`${data.message}!`);
+
+      Notify.success('Email verified successfully! You can now log in.');
+
       return data;
     } catch (error) {
-      if (error.response.status === 404) {
-        Notify.failure(`${error.response?.data?.message}!`);
+      if (error.response?.status === 404) {
+        Notify.failure('Verification link is invalid or has already been used.');
       }
 
       return rejectWithValue(error.message);
@@ -86,18 +96,3 @@ export const refreshUser = createAsyncThunk(
     },
   },
 );
-
-// export const refreshUser = createAsyncThunk(
-//   'auth/refreshUser',
-//   async (_, { getState, rejectWithValue }) => {
-//     const { token } = getState().auth;
-//     token && setAuthHeader(token);
-
-//     try {
-//       const response = await axios.get('/users/current');
-//       return response.data;
-//     } catch (e) {
-//       return rejectWithValue(e.message);
-//     }
-//   },
-// );

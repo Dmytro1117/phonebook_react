@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { register, loginization, logOut, refreshUser, verificationUser } from './operationsAuth';
 
 const handlePending = state => {
