@@ -8,7 +8,7 @@ export const ContactItem = ({ item }) => {
 
   const handleDeleteContact = id => {
     dispatch(deleteContact(id));
-    Notify.failure(`Delete complited`);
+    Notify.failure(`Контакт видалено (Delete complited)`);
   };
 
   return (

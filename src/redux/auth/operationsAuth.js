@@ -6,21 +6,28 @@ import { setAuthHeader, cleanAuthHeader } from '../../helpers/axiosConfig';
 export const register = createAsyncThunk('auth/register', async (user, { rejectWithValue }) => {
   try {
     const response = await axios.post('/auth/register', user);
-    Notify.success('Registration successful! Please check your email to verify your account.');
+    Notify.success(
+      'Реєстрація успішнна. Перевірте вашу пошту для верифікації. (Registration successful! Please check your email to verify your account)',
+    );
     return response.data.user;
   } catch (error) {
     const serverMessage = error.response?.data?.message;
 
     if (error.response?.status === 409) {
-      Notify.failure(serverMessage || 'User with this email already exists!');
+      Notify.failure(
+        serverMessage ||
+          'Користувач з таким іменем вже існує (User with this email already exists)',
+      );
     } else if (error.response?.status === 400) {
       if (Array.isArray(serverMessage)) {
         serverMessage.forEach(msg => Notify.failure(msg));
       } else {
-        Notify.failure(serverMessage || 'Invalid data entered');
+        Notify.failure(serverMessage || 'Введено недійсні дані. (Invalid data entered)');
       }
     } else {
-      Notify.failure('Something went wrong. Please try again.');
+      Notify.failure(
+        'Щось пішло не так. Спробуйте ще раз. (Something went wrong. Please try again)',
+      );
     }
 
     return rejectWithValue(error.message);
@@ -33,12 +40,16 @@ export const verificationUser = createAsyncThunk(
     try {
       const { data } = await axios.get(`/auth/verify/${verificationToken}`);
 
-      Notify.success('Email verified successfully! You can now log in.');
+      Notify.success(
+        'Пошта верифікована. Можете залогінитися. (Email verified successfully! You can now log in)',
+      );
 
       return data;
     } catch (error) {
       if (error.response?.status === 404) {
-        Notify.failure('Verification link is invalid or has already been used.');
+        Notify.failure(
+          'Посилання недійсне чи вже використане. (Verification link is invalid or has already been used)',
+        );
       }
 
       return rejectWithValue(error.message);
@@ -55,7 +66,9 @@ export const loginization = createAsyncThunk(
       return response.data;
     } catch (error) {
       if (error.response.status === 401) {
-        Notify.failure(`${error.response?.data?.message ?? 'Email is not verified'}!`);
+        Notify.failure(
+          `${error.response?.data?.message ?? 'Пошта не верифікована. (Email is not verified)'}!`,
+        );
       }
 
       if (error.response.status === 403) {

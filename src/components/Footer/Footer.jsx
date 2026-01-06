@@ -4,7 +4,7 @@ import { TextFooter, FooterStyled } from './Footer.styled';
 const Footer = () => {
   return (
     <FooterStyled>
-      <TextFooter>&#169; 2025 | Всі права захищені |</TextFooter>
+      <TextFooter>&#169; 2026 | Всі права захищені |</TextFooter>
     </FooterStyled>
   );
 };

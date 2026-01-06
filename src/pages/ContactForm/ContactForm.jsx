@@ -41,10 +41,12 @@ export default function ContactForm() {
           num.phone === newContact.phone,
       )
     ) {
-      return Notify.warning(`${newContact.name} or ${newContact.phone} is already in contacts`);
+      return Notify.warning(
+        `${newContact.name} or ${newContact.phone} вже є в списку контактів (is already in contacts)`,
+      );
     }
 
-    Notify.success(`${newContact.name}: ${newContact.phone} added successfully`);
+    Notify.success(`${newContact.name}: ${newContact.phone} додано (added successfully)`);
 
     dispatch(addContact(newContact));
     resetForm();
