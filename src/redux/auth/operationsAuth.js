@@ -57,6 +57,21 @@ export const verificationUser = createAsyncThunk(
   },
 );
 
+export const resendVerification = createAsyncThunk(
+  'auth/resendVerification',
+  async (email, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post('/auth/verify/resend-email', { email });
+      Notify.success('Лист підтвердження надіслано повторно!');
+      return data;
+    } catch (error) {
+      const serverMessage = error.response?.data?.message || 'Помилка запиту';
+      Notify.failure(serverMessage);
+      return rejectWithValue(serverMessage);
+    }
+  },
+);
+
 export const loginization = createAsyncThunk(
   'auth/loginization',
   async (user, { rejectWithValue }) => {
@@ -80,6 +95,27 @@ export const loginization = createAsyncThunk(
           Notify.failure(msg);
         });
       }
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const updateAvatar = createAsyncThunk(
+  'user/updateAvatar',
+  async (file, { rejectWithValue }) => {
+    try {
+      const formData = new FormData();
+      formData.append('avatar', file);
+
+      const { data } = await axios.patch('/user/avatars', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      Notify.success('Аватар оновлено!');
+      return data.avatar;
+    } catch (error) {
+      Notify.failure('Помилка завантаження');
       return rejectWithValue(error.message);
     }
   },

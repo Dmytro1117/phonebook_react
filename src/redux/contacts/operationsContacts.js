@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { baseURL } from '../../helpers/axiosConfig';
 
 export const fetchContacts = createAsyncThunk('contacts/fetchAll', async (_, thunkAPI) => {
   try {
@@ -26,6 +25,32 @@ export const deleteContact = createAsyncThunk(
     try {
       const response = await axios.delete(`/contacts/${contact_Id}`);
       return response.data.deletedContact;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  },
+);
+
+export const toggleFavorite = createAsyncThunk(
+  'contacts/toggleFavorite',
+  async ({ contactId, favorite }, thunkAPI) => {
+    try {
+      const response = await axios.patch(`/contacts/${contactId}/favorite`, { favorite });
+      return response.data.updatedFavorite;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  },
+);
+
+export const updateContact = createAsyncThunk(
+  'contacts/updateContact',
+  async ({ contactId, formData }, thunkAPI) => {
+    try {
+      const response = await axios.put(`/contacts/${contactId}`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      return response.data.updateContact;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

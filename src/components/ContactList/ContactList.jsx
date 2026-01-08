@@ -13,15 +13,42 @@ export const ContactList = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  return filteredContacts.length === 0 ? (
-    <p>Контактів не знайдено</p>
-  ) : (
-    <List>
-      {filteredContacts.map(item => (
-        <ListItem key={item._id}>
-          <ContactItem item={item} />
-        </ListItem>
-      ))}
-    </List>
+  // return filteredContacts.length === 0 ? (
+  //   <p>Контактів не знайдено</p>
+  // ) : (
+  //   <List>
+  //     {filteredContacts.map(item => (
+  //       <ListItem key={item._id}>
+  //         <ContactItem item={item} />
+  //       </ListItem>
+  //     ))}
+  //   </List>
+  // );
+  return (
+    <div>
+      {/* Додаємо інфо-блок зверху */}
+      <div
+        style={{
+          marginBottom: '20px',
+          padding: '10px',
+          backgroundColor: '#f0f2f5',
+          borderRadius: '4px',
+        }}
+      >
+        <strong>Всього контактів: </strong> {filteredContacts.length}
+      </div>
+
+      {filteredContacts.length === 0 ? (
+        <p>Контактів не знайдено</p>
+      ) : (
+        <List>
+          {filteredContacts.map(item => (
+            <ListItem key={item._id}>
+              <ContactItem item={item} />
+            </ListItem>
+          ))}
+        </List>
+      )}
+    </div>
   );
 };

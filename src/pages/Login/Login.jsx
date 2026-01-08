@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { loginization } from '../../redux/auth/operationsAuth';
 import { useDispatch } from 'react-redux';
 import { Input, Container, But, Title } from '../../pages/Register/Register.styled';
@@ -50,6 +51,11 @@ const Login = () => {
         />
         <But htmlType="submit">Увійти</But>
       </form>
+      <div style={{ marginTop: '15px', textAlign: 'center' }}>
+        <p>
+          Не отримали лист підтвердження? <Link to="/resend-email">Надіслати знову</Link>
+        </p>
+      </div>
     </Container>
   );
 };

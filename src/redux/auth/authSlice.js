@@ -1,5 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, loginization, logOut, refreshUser, verificationUser } from './operationsAuth';
+import {
+  register,
+  loginization,
+  logOut,
+  refreshUser,
+  verificationUser,
+  updateAvatar,
+} from './operationsAuth';
+import { addContact, deleteContact } from '../contacts/operationsContacts';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -14,7 +22,7 @@ const handleRejected = (state, action) => {
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    user: { name: null, email: null },
+    user: { name: null, email: null, avatar: null },
     token: null,
     isLoaggedIn: false,
     isRefreshing: false,
@@ -43,6 +51,25 @@ const authSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(loginization.rejected, handleRejected)
+
+      .addCase(updateAvatar.pending, handlePending)
+      .addCase(updateAvatar.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.user.avatar = action.payload;
+      })
+      .addCase(updateAvatar.rejected, handleRejected)
+
+      .addCase(addContact.fulfilled, (state, action) => {
+        if (action.payload.owner?.subscription) {
+          state.user.subscription = action.payload.owner.subscription;
+        }
+      })
+      .addCase(deleteContact.fulfilled, (state, action) => {
+        if (action.payload.newSubscription) {
+          state.user.subscription = action.payload.newSubscription;
+        }
+      })
 
       .addCase(logOut.pending, handlePending)
       .addCase(logOut.fulfilled, state => {

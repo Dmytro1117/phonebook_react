@@ -15,6 +15,7 @@ const Home = lazy(() => import('../pages/Home/Home'));
 const Contacts = lazy(() => import('../pages/Contacts/Contacs'));
 const ContactForm = lazy(() => import('../pages/ContactForm/ContactForm'));
 const VerifyEmail = lazy(() => import('../pages/VerifyEmail/VerifyEmail'));
+const ResendEmail = lazy(() => import('../pages/ResendEmail/ResendEmail'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -33,6 +34,11 @@ export const App = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route path="/verify-email/:verificationToken" element={<VerifyEmail />} />
+
+        <Route
+          path="/resend-email"
+          element={<RestrictedRoute redirectTo="/contacts" component={<ResendEmail />} />}
+        />
 
         <Route index element={<Home />} />
 
