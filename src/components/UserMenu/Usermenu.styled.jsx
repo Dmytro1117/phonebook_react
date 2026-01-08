@@ -5,9 +5,9 @@ export const WrapperUser = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
-  padding: 8px 16px;
+  padding: 6px 20px;
   background: rgba(255, 255, 255, 0.6);
-  border-radius: 16px;
+  border-radius: 8px;
   border: 1px solid rgba(58, 151, 232, 0.15);
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;

@@ -67,7 +67,7 @@ export const But = styled(Button)`
   background: var(--text-main);
   color: #ffffff;
   border: none;
-  border-radius: 12px;
+  border-radius: 8px;
   font-size: 16px;
   font-weight: 600;
   margin-top: 10px;

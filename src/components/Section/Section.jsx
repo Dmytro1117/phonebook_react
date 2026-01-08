@@ -1,10 +1,12 @@
-import { SectionStyled, Title } from './Section.styled';
+import { SectionStyled, Title, PageCenterWrapper } from './Section.styled';
 
 export const Section = ({ title, children }) => {
   return (
-    <SectionStyled>
-      {title && <Title>{title}</Title>}
-      {children}
-    </SectionStyled>
+    <PageCenterWrapper>
+      <SectionStyled>
+        {title && <Title>{title}</Title>}
+        {children}
+      </SectionStyled>
+    </PageCenterWrapper>
   );
 };

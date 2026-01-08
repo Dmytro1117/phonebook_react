@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 export const SectionStyled = styled.section`
-  max-width: 800px;
+  width: 800px;
+  // min-width: 600px;
+
   padding: 40px;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
   margin: 20px auto;
@@ -33,4 +35,14 @@ export const Title = styled.h2`
     background: linear-gradient(90deg, #3a97e8, #2575fc);
     border-radius: 2px;
   }
+`;
+
+export const PageCenterWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 170px);
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
 `;
