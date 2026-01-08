@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchContacts } from '../../redux/contacts/operationsContacts';
 import { ContactItem } from '../ContactItem/ContactItem';
 import { selectVisibleContacts } from '../../redux/contacts/contactsSelectors';
-import { List, ListItem } from './ContactList.styled';
+import { List, ListItem, ListContainer, StatsBlock } from './ContactList.styled';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
@@ -13,33 +13,17 @@ export const ContactList = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  // return filteredContacts.length === 0 ? (
-  //   <p>Контактів не знайдено</p>
-  // ) : (
-  //   <List>
-  //     {filteredContacts.map(item => (
-  //       <ListItem key={item._id}>
-  //         <ContactItem item={item} />
-  //       </ListItem>
-  //     ))}
-  //   </List>
-  // );
   return (
-    <div>
-      {/* Додаємо інфо-блок зверху */}
-      <div
-        style={{
-          marginBottom: '20px',
-          padding: '10px',
-          backgroundColor: '#f0f2f5',
-          borderRadius: '4px',
-        }}
-      >
-        <strong>Всього контактів: </strong> {filteredContacts.length}
-      </div>
+    <ListContainer>
+      <StatsBlock>
+        <strong>Всього контактів</strong>
+        <span>{filteredContacts.length}</span>
+      </StatsBlock>
 
       {filteredContacts.length === 0 ? (
-        <p>Контактів не знайдено</p>
+        <div style={{ textAlign: 'center', padding: '40px', color: '#888' }}>
+          <p>Контактів не знайдено</p>
+        </div>
       ) : (
         <List>
           {filteredContacts.map(item => (
@@ -49,6 +33,6 @@ export const ContactList = () => {
           ))}
         </List>
       )}
-    </div>
+    </ListContainer>
   );
 };

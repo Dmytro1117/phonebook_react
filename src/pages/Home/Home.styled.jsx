@@ -21,7 +21,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  min-height: calc(100vh - 140px);
+  min-height: calc(100vh - 170px);
 `;
 
 export const UnderTitle = styled.h2`

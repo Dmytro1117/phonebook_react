@@ -1,56 +1,82 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { UserAddOutlined, LoginOutlined, HomeOutlined, TeamOutlined } from '@ant-design/icons';
+
+export const Header = styled.header`
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+
+  background: rgba(224, 230, 236, 0.6);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+`;
 
 export const Container = styled.div`
   display: flex;
   justify-content: center;
-  border-bottom: 2px solid #3a97e8;
-  background-color: rgba(72, 75, 77, 0.09);
-  padding: 0 15px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+  box-sizing: border-box;
 `;
 
 export const Nav = styled.nav`
   display: flex;
-  width: 1200px;
-  gap: 30px;
+  width: 100%;
   justify-content: space-between;
-  height: 60px;
+  height: 80px;
   align-items: center;
+
+  & > div {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap: 15px;
+  }
 `;
 
 export const Link = styled(NavLink)`
-  &:not(:last-child) {
-    margin-right: 20px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 16px;
+  font-weight: 600;
+  padding: 4px 16px;
+  border-radius: 4px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  height: fit-content;
+
+  &:hover {
+    color: var(--accent-color);
+    background: rgba(58, 151, 232, 0.05);
   }
 
   &.active {
-    color: #3a97e8;
-    border-top: 4px solid #3a97e8;
+    color: #ffffff;
+    background: var(--text-secondary);
+
+    font-size: 16px;
+    font-weight: 600;
   }
-  text-decoration: none;
-  color: inherit;
-  font-size: 20px;
-  font-weight: 600;
-  padding: 12px 4px;
 `;
-
-export const RegIcon = styled(UserAddOutlined)`
-  margin-right: 8px;
-`;
-
-export const LogInIcon = styled(LoginOutlined)`
-  margin-right: 8px;
-`;
-
-export const HomeIcon = styled(HomeOutlined)`
-  margin-right: 8px;
-`;
-
-export const ContactIcon = styled(TeamOutlined)`
-  margin-right: 8px;
-`;
-
-export const AddContactIcon = styled(UserAddOutlined)`
-  margin-right: 8px;
+export const UserMenuWrapper = styled.div`
+  animation: fadeInRight 0.5s ease-out;
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
 `;

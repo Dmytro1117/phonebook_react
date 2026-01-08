@@ -3,14 +3,27 @@ import { CiTrash, CiEdit } from 'react-icons/ci';
 
 export const CiEditStyled = styled(CiEdit)`
   cursor: pointer;
-  color: rgba(104, 105, 107, 0.877);
-  transition: color 0.25s ease, transform 0.2s ease;
-  margin-right: 15px; /* Відступ від кошика */
+  color: var(--text-secondary);
+  transition: all 0.25s ease;
+  margin-right: 15px;
   flex-shrink: 0;
 
   &:hover,
   &:focus {
-    color: #1677ff; /* Синій колір Ant Design або будь-який інший */
+    color: var(--accent-color);
+    transform: scale(1.1);
+  }
+`;
+
+export const CiTrashStyled = styled(CiTrash)`
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+
+  &:hover,
+  &:focus {
+    color: #ef4444;
     transform: scale(1.1);
   }
 `;
@@ -20,18 +33,18 @@ export const ContactInfo = styled.div`
   flex-direction: column;
   gap: 2px;
   flex-grow: 1;
-  margin-right: 15px;
+  margin-right: 20px;
 `;
 
 export const ContactName = styled.span`
   font-size: 18px;
   font-weight: 600;
-  color: #333;
+  color: var(--text-main);
 `;
 
 export const ContactPhone = styled.span`
-  font-size: 16px;
-  color: #666;
+  font-size: 14px;
+  color: var(--text-secondary);
 `;
 
 export const AvatarWrapper = styled.div`
@@ -57,7 +70,7 @@ export const Overlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 4px; /* Квадратний оверлей */
+  border-radius: 4px;
   opacity: 0;
   transition: opacity 0.3s ease;
   color: white;
@@ -70,24 +83,11 @@ export const StarWrapper = styled.div`
   font-size: 22px;
   display: flex;
   align-items: center;
-  transition: color 0.3s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
   color: ${props => (props.$isFavorite ? '#fadb14' : '#d9d9d9')};
 
   &:hover {
-    transform: scale(1.1);
-  }
-`;
-
-export const CiTrashStyled = styled(CiTrash)`
-  cursor: pointer;
-  color: rgba(104, 105, 107, 0.877);
-  transition: color 0.25s ease, transform 0.2s ease;
-  flex-shrink: 0;
-
-  &:hover,
-  &:focus {
-    color: rgba(219, 39, 15, 0.781);
-    transform: scale(1.1);
+    transform: scale(1.2);
   }
 `;
 
@@ -97,39 +97,38 @@ export const Backdrop = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1200; /* вище за всі елементи */
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
 `;
 
 export const ModalContent = styled.div`
   background-color: #fff;
   padding: 40px;
-  border-radius: 2px;
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
-  width: 600px;
+  border-radius: 8px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  width: 480px;
   position: relative;
+  box-sizing: border-box;
 
-  input {
-    width: 100%;
-    max-width: 100%;
-    display: block;
+  &,
+  * {
+    box-sizing: border-box;
   }
 `;
 
 export const CloseButton = styled.button`
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 16px;
+  right: 16px;
   background: transparent;
   border: none;
   font-size: 24px;
-  line-height: 1;
   cursor: pointer;
-  color: #333;
+  color: var(--text-secondary);
 
   &:hover {
     color: #ff4d4f;
@@ -137,11 +136,9 @@ export const CloseButton = styled.button`
 `;
 
 export const ModalTitle = styled.h3`
-  margin-top: 0;
-  margin-bottom: 30px; /* відступ до першого інпуту */
+  margin: 0 0 24px 0;
   font-size: 24px;
   font-weight: 700;
-  color: #333;
-  text-align: center; /* Центрування тексту */
-  width: 100%;
+  color: var(--text-main);
+  text-align: center;
 `;

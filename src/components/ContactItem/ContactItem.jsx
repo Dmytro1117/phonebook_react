@@ -1,7 +1,7 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
 import { Formik, Form } from 'formik';
-import * as yup from 'yup';
 import { Avatar } from 'antd';
 import { StarOutlined, StarFilled, CameraOutlined, UserOutlined } from '@ant-design/icons';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
@@ -10,7 +10,7 @@ import {
   toggleFavorite,
   updateContact,
 } from '../../redux/contacts/operationsContacts';
-
+import { schema } from '../../helpers/formSchema';
 import {
   ContactInfo,
   ContactName,
@@ -27,22 +27,29 @@ import {
 } from './ContactItem.styled';
 import { Label, Input, Error, ButtonSubmit } from '../../pages/ContactForm/ContactForm.styled';
 
-const schema = yup.object().shape({
-  name: yup
-    .string()
-    .matches(/^\p{Lu}[\p{L}\s.'-]+$/u, "Ім'я має починатися з великої літери (без цифр)")
-    .max(25, 'Максимальна довжина 25 символів')
-    .required("Ім'я є обов'язковим полем"),
-  phone: yup
-    .string()
-    .matches(/^\d{3}-\d{2}-\d{2}$/, 'Номер має бути в форматі 555-55-55')
-    .required("Номер є обов'язковим полем"),
-});
-
 export const ContactItem = ({ item }) => {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const fileInputRef = useRef(null);
+
+  useEffect(() => {
+    if (!isModalOpen) return;
+
+    const handleKeyDown = e => {
+      if (e.code === 'Escape') {
+        setIsModalOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isModalOpen]);
 
   const handleToggleFavorite = () => {
     dispatch(
@@ -118,36 +125,38 @@ export const ContactItem = ({ item }) => {
       <CiEditStyled size={24} onClick={() => setIsModalOpen(true)} />
       <CiTrashStyled type="button" size={24} onClick={() => handleDeleteContact(item._id)} />
 
-      {isModalOpen && (
-        <Backdrop onClick={() => setIsModalOpen(false)}>
-          <ModalContent onClick={e => e.stopPropagation()}>
-            <CloseButton onClick={() => setIsModalOpen(false)}>×</CloseButton>
-            <ModalTitle>Редагувати контакт:</ModalTitle>
+      {isModalOpen &&
+        createPortal(
+          <Backdrop onClick={() => setIsModalOpen(false)}>
+            <ModalContent onClick={e => e.stopPropagation()}>
+              <CloseButton onClick={() => setIsModalOpen(false)}>×</CloseButton>
+              <ModalTitle>Редагувати контакт:</ModalTitle>
 
-            <Formik
-              initialValues={{ name: item.name, phone: item.phone }}
-              validationSchema={schema}
-              onSubmit={handleUpdate}
-            >
-              <Form>
-                <Label>
-                  Ім'я
-                  <Input type="text" name="name" />
-                  <Error name="name" component="div" />
-                </Label>
-                <Label style={{ marginTop: '15px' }}>
-                  Номер телефону
-                  <Input type="tel" name="phone" />
-                  <Error name="phone" component="div" />
-                </Label>
-                <ButtonSubmit type="submit" style={{ marginTop: '20px' }}>
-                  Зберегти зміни
-                </ButtonSubmit>
-              </Form>
-            </Formik>
-          </ModalContent>
-        </Backdrop>
-      )}
+              <Formik
+                initialValues={{ name: item.name, phone: item.phone }}
+                validationSchema={schema}
+                onSubmit={handleUpdate}
+              >
+                <Form>
+                  <Label>
+                    Ім'я
+                    <Input type="text" name="name" />
+                    <Error name="name" component="div" />
+                  </Label>
+                  <Label style={{ marginTop: '15px' }}>
+                    Номер телефону
+                    <Input type="tel" name="phone" />
+                    <Error name="phone" component="div" />
+                  </Label>
+                  <ButtonSubmit type="submit" style={{ marginTop: '20px' }}>
+                    Зберегти зміни
+                  </ButtonSubmit>
+                </Form>
+              </Formik>
+            </ModalContent>
+          </Backdrop>,
+          document.getElementById('modal-root'),
+        )}
     </>
   );
 };

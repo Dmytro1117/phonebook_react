@@ -23,7 +23,7 @@ const Home = () => {
         </>
       ) : (
         <>
-          <UnderTitle>Доброго дня, {name}</UnderTitle>
+          <UnderTitle>Вітаю, {name}</UnderTitle>
           <Img src={auth} alt="Mr.auth" />
           <UnderTitle>
             перейдіть на вкладку

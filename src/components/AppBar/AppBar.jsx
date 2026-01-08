@@ -1,60 +1,41 @@
 import { useSelector } from 'react-redux';
 import { UserMenu } from '../../components/UserMenu/UserMenu';
 import { selectIsLoggedIn } from '../../redux/auth/authSelectors';
-import {
-  Nav,
-  Link,
-  RegIcon,
-  LogInIcon,
-  HomeIcon,
-  ContactIcon,
-  AddContactIcon,
-  Container,
-} from './AppBar.styled';
+import { Header, Nav, Link, Container, UserMenuWrapper } from './AppBar.styled';
 
 export const AppBar = () => {
-  const isLoaggedIn = useSelector(selectIsLoggedIn);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
-    <header>
+    <Header>
       <Container>
         <Nav>
           <div>
-            <Link to="/">
-              <HomeIcon />
+            <Link to="/" end>
               Головна
             </Link>
-            {isLoaggedIn && (
+            {isLoggedIn && (
               <>
-                <Link to="/contacts">
-                  <ContactIcon />
-                  Контакти
-                </Link>
-                <Link to="/form_contact">
-                  <AddContactIcon />
-                  Додати новий контакт
-                </Link>
+                <Link to="/contacts">Контакти</Link>
+                <Link to="/form_contact">Додати контакт</Link>
               </>
             )}
           </div>
+
           <div>
-            {isLoaggedIn ? (
-              <UserMenu />
+            {isLoggedIn ? (
+              <UserMenuWrapper>
+                <UserMenu />
+              </UserMenuWrapper>
             ) : (
               <>
-                <Link to="/register">
-                  <RegIcon />
-                  Реєстрація
-                </Link>
-                <Link to="/login">
-                  <LogInIcon />
-                  Увійти
-                </Link>
+                <Link to="/register">Реєстрація</Link>
+                <Link to="/login">Увійти</Link>
               </>
             )}
           </div>
         </Nav>
       </Container>
-    </header>
+    </Header>
   );
 };

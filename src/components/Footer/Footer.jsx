@@ -2,9 +2,13 @@ import React from 'react';
 import { TextFooter, FooterStyled } from './Footer.styled';
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
     <FooterStyled>
-      <TextFooter>&#169; 2026 | Всі права захищені |</TextFooter>
+      <TextFooter>
+        © {currentYear} <strong>Phonebook</strong>. Всі права захищені.
+      </TextFooter>
     </FooterStyled>
   );
 };

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/operationsAuth';
-import { Input, Container, But, Title } from './Register.styled';
+import { Input, Container, But, Title, PageContainer } from './Register.styled';
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -38,27 +38,32 @@ const Register = () => {
   };
 
   return (
-    <Container>
-      <Title>Реєстрація</Title>
-      <form onSubmit={handleSubmit}>
-        <Input type="text" name="name" value={name} placeholder="Name" onChange={handleChange} />
-        <Input
-          type="email"
-          name="email"
-          value={email}
-          placeholder="Email"
-          onChange={handleChange}
-        />
-        <Input
-          type="password"
-          name="password"
-          value={password}
-          placeholder="Password"
-          onChange={handleChange}
-        />
-        <But htmlType="submit">Зареєструватись</But>
-      </form>
-    </Container>
+    <PageContainer>
+      <Container>
+        <Title>Реєстрація</Title>
+        <form
+          onSubmit={handleSubmit}
+          style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+        >
+          <Input type="text" name="name" value={name} placeholder="Name" onChange={handleChange} />
+          <Input
+            type="email"
+            name="email"
+            value={email}
+            placeholder="Email"
+            onChange={handleChange}
+          />
+          <Input
+            type="password"
+            name="password"
+            value={password}
+            placeholder="Password"
+            onChange={handleChange}
+          />
+          <But htmlType="submit">Зареєструватись</But>
+        </form>
+      </Container>
+    </PageContainer>
   );
 };
 

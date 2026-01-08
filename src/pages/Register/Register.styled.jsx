@@ -1,56 +1,94 @@
 import styled from 'styled-components';
 import { Button } from 'antd';
 
+export const PageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 170px);
+  width: 100%;
+`;
+
 export const Container = styled.div`
-  width: 550px;
-  padding: 20px;
-  box-shadow: 4px 4px 8px #8888888e;
-  margin: auto;
-  margin-top: calc(50vh - 60px); /* Пів висоти екрану мінус висота шапки (60px) */
-  transform: translateY(-50%);
-  border-radius: 2px;
+  width: 100%;
+  max-width: 480px;
+  padding: 40px;
+  background: #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+
+  margin: 0 auto;
+
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
 export const Input = styled.input`
-  width: 400px;
-  margin-bottom: 22px;
-  font-size: 18px;
-  padding: 8px 16px;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 24px;
+  font-size: 16px;
+  padding: 12px 4px;
   border: none;
-  border-bottom: 1px solid rgba(104, 105, 107, 0.877);
+  border-bottom: 1.5px solid #e2e8f0;
   display: block;
+  background-color: transparent !important;
+  transition: all 0.3s ease;
+  color: var(--text-main);
 
-  &:hover,
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+    -webkit-text-fill-color: var(--text-main) !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  &::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+  }
+
   &:focus {
     outline: none;
-    border: none;
-    border-bottom: 1px solid rgba(19, 116, 206, 0.781);
+    border-bottom: 1.5px solid #000000;
+  }
+
+  &:hover {
+    border-bottom: 1.5px solid var(--text-secondary);
   }
 `;
 
 export const But = styled(Button)`
-  border-radius: 2px;
-  display: block;
-  font-size: 18px;
-  height: 40px;
-  margin-left: auto;
-  margin-right: auto;
-  border: 1px solid #6b6e72;
+  width: 100%;
+  max-width: 400px;
+  height: 48px;
+  background: var(--text-main);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 10px;
+  transition: all 0.3s ease;
 
   &:hover,
   &:focus {
-    color: rgba(19, 116, 206, 0.781);
-    border: 1px solid rgba(19, 116, 206, 0.781);
+    background: #000000 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 `;
 
 export const Title = styled.h2`
-  font-size: 28px;
-  // color: #1374ce;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 18px;
-  margin-top: 18px;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 32px;
+  letter-spacing: -0.5px;
 `;

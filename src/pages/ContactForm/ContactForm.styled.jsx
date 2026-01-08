@@ -1,6 +1,20 @@
 import styled from 'styled-components';
 import { Field, ErrorMessage } from 'formik';
 
+export const PageWrapper = styled.div`
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  height: calc(100vh - 170px);
+
+  width: 100%;
+  box-sizing: border-box;
+
+  overflow: hidden;
+`;
+
 export const Label = styled.label`
   color: rgba(31, 166, 224, 0.837);
   font-size: 20px;
@@ -8,6 +22,8 @@ export const Label = styled.label`
 
 export const Input = styled(Field)`
   width: 400px;
+  background: none !important;
+  background-color: transparent !important;
   margin-bottom: 16px;
   font-size: 16px;
   padding: 8px 16px;

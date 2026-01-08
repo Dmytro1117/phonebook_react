@@ -32,7 +32,6 @@ const ResendEmail = () => {
           required
         />
         <But htmlType="submit">Надіслати лист</But>
-        {/* <button type="submit">Надіслати лист</button> */}
       </form>
     </Container>
   );
