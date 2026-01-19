@@ -9,19 +9,29 @@
 ![Redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)
 ![Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 
-## Опис проекту
+## Project Description
 
-`Phonebook:` Можливість зберігати та організовувати свій список контактів, створювати нові контакти,
-визначати їхні ролі та важливість, також змінювати їх статуси, додавати фотографії user та самим
-контактним номерам.
+**Phonebook** is a comprehensive contact management application. It allows users to securely store
+and organize their contact lists, create new entries, assign roles, define importance, manage
+statuses, and upload photos for both user profiles and individual contacts.
 
-`Основні функції:`
+### Key Features:
 
-- Реєстрація та Авторизація.
-- Cтворення нових контактів, включаючи ім'я, номер телефону, додавання до улюблених та фотографій.
-- Додавання фотографії user, статусу (Standart, Pro, Vip).
-- Верифікація електронної пошти, щоб забезпечити, що адреси користувачів є дійсними.
+- **Authentication & Authorization:** Secure registration and login system.
+- **Contact Management:** Create and manage contacts with detailed information including name, phone
+  number, "Favorite" status, and contact photos.
+- **User Profile Customization:** Support for user avatars and tiered account statuses (**Standard,
+  Pro, Vip**).
+- **Email Verification:** Integrated verification system to ensure valid user email addresses and
+  enhance security.
 
-## Технічні характеристики
+## Technical Specifications
 
-`Посилання на сайт:` https://phonebook-alpha.vercel.app/
+**Live Demo:** [https://phonebook-alpha.vercel.app/](https://phonebook-alpha.vercel.app/)
+
+### Core Technologies:
+
+- **Frontend:** React with React Router for seamless navigation.
+- **State Management:** Redux for predictable data flow.
+- **Styling & Assets:** Optimized image handling and responsive design.
+- **Security:** Verified email protocols and secure token-based sessions.
