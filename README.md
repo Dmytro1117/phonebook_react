@@ -33,18 +33,13 @@ Follow these steps to set up the project on your local machine:
 
 ### 1. Clone the repository
 
-git clone https://github.com cd phonebook
+git clone https://github.com/Dmytro1117/phonebook_react.git cd phonebook
 
 ### 2. Install dependencies
 
 npm install
 
-### 3. Environment Variables
-
-Create a .env file in the root directory and add your backend API URL (if applicable):
-REACT_APP_API_URL=https://phonebook-api-backend-v92w.onrender.com
-
-### 4. Run the application
+### 3. Run the application
 
 npm start The app will be available at http://localhost:3000.
 
