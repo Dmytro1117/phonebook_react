@@ -2,6 +2,8 @@
 
 ![React](./assets/Phonebook.png)
 
+## Tech Stack
+
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
 ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 ![NPM](https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white)
@@ -25,13 +27,25 @@ statuses, and upload photos for both user profiles and individual contacts.
 - **Email Verification:** Integrated verification system to ensure valid user email addresses and
   enhance security.
 
-## Technical Specifications
+## Getting Started
 
-**Live Demo:** [https://phonebook-alpha.vercel.app/](https://phonebook-alpha.vercel.app/)
+Follow these steps to set up the project on your local machine:
 
-### Core Technologies:
+### 1. Clone the repository
 
-- **Frontend:** React with React Router for seamless navigation.
-- **State Management:** Redux for predictable data flow.
-- **Styling & Assets:** Optimized image handling and responsive design.
-- **Security:** Verified email protocols and secure token-based sessions.
+git clone https://github.com cd phonebook
+
+### 2. Install dependencies
+
+npm install
+
+### 3. Environment Variables
+
+Create a .env file in the root directory and add your backend API URL (if applicable):
+REACT_APP_API_URL=https://phonebook-api-backend-v92w.onrender.com
+
+### 4. Run the application
+
+npm start The app will be available at http://localhost:3000.
+
+🔗 **[Live Demo](https://phonebook-alpha.vercel.app/)**
